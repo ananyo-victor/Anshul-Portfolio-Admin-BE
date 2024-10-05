@@ -53,12 +53,12 @@ const educationSchema = new mongoose.Schema({
 });
 
 const portfolioSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel', required: true },
-  users: [userSchema],
-  projects: [projectSchema],
-  experiences: [experienceSchema],
-  educations: [educationSchema],
-  skills: [skillSchema]
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel' },
+  users: { type: userSchema, required: true },  // If it must always be an object
+  projects: { type: [projectSchema], default: [] }, // Empty array by default
+  experiences: { type: [experienceSchema], default: [] }, // Empty array by default
+  educations: { type: [educationSchema], default: [] }, // Empty array by default
+  skills: { type: [skillSchema], default: [] }, // Empty array by default
 });
 
 const PortfolioModel = mongoose.model("Portfolio", portfolioSchema);
